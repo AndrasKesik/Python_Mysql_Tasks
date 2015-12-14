@@ -1,10 +1,10 @@
 import mysql.connector
 
-CREATE_DB = r"C:\Workspace\Python\Week7\mysql_task\create.sql"
-INSERT_DATA = r"C:\Workspace\Python\Week7\mysql_task\insert.sql"
-MODIFY_DATA = r"C:\Workspace\Python\Week7\mysql_task\modify.sql"
-REMOVE_DATA = r"C:\Workspace\Python\Week7\mysql_task\remove.sql"
-APPEND = r"C:\Workspace\Python\Week7\mysql_task\append.sql"
+CREATE_DB = r"C:\Workspace\Python\Week7\mysql_task\main_task\create.sql"
+INSERT_DATA = r"C:\Workspace\Python\Week7\mysql_task\main_task\insert.sql"
+MODIFY_DATA = r"C:\Workspace\Python\Week7\mysql_task\main_task\modify.sql"
+REMOVE_DATA = r"C:\Workspace\Python\Week7\mysql_task\main_task\remove.sql"
+APPEND = r"C:\Workspace\Python\Week7\mysql_task\main_task\append.sql"
 
 def run_sql_script(sql_file):
     with open(sql_file, 'r') as f:
