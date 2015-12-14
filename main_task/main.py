@@ -1,5 +1,5 @@
-# -*- coding: UTF-8 -*-
-import pymysql
+import mysql.connector
+
 CREATE_DB = r"C:\Workspace\Python\Week7\mysql_task\create.sql"
 INSERT_DATA = r"C:\Workspace\Python\Week7\mysql_task\insert.sql"
 MODIFY_DATA = r"C:\Workspace\Python\Week7\mysql_task\modify.sql"
@@ -18,30 +18,16 @@ def run_sql_script(sql_file):
                 actual = ""
     connection.commit()
 
-def task_queries():
-    pass
-    """
-     with open(r"C:\Workspace\Python\Week7\mysql_task\task_queries.sql", 'r') as f:
-        sql_data = f.read()
-        actual = ""
-        for i in sql_data.split('\n'):
-            if not i.startswith("--"):
-                actual += i
-                if i.endswith(";"):
-                    cursor.execute(actual)
-                    data = cursor.fetchall()
-                    for row in data:
-                        print(row)
-                    actual = ""
-    """
-connection = pymysql.connect(user="root", password="r2e7d", host="127.0.0.1", port=3306, database="mysql")
-cursor = connection.cursor()
+connection = mysql.connector.connect(user="root", password="r2e7d", host="127.0.0.1", port=3306)
+cursor = connection.cursor(buffered=True)
 
 run_sql_script(CREATE_DB)
-run_sql_script(INSERT_DATA)
-#run_sql_script(MODIFY_DATA)
-#run_sql_script(REMOVE_DATA)
-#run_sql_script(APPEND)
+
+cursor.execute("SELECT * FROM meetupregistrations;")
+data = cursor.fetchall()
+if not data:
+    run_sql_script(INSERT_DATA)
+
 
 print("\n\t-- ALL MEETUPS FOR A PARTICULAR USER --\n")
 cursor.execute("SELECT \
@@ -69,8 +55,5 @@ data = cursor.fetchall()
 for i in data:
     print(i)
 
-#task_queries()
-
 connection.close()
-
 
